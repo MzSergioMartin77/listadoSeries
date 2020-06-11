@@ -1,0 +1,19 @@
+{
+  "name": "listado-node",
+  "version": "1.0.0",
+  "description": "Api Rest de la aplicación listadoSeries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MzSergioMartin77/listadoSeries.git"
+  },
+  "author": "Sergio Martín Ortega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MzSergioMartin77/listadoSeries/issues"
+  },
+  "homepage": "https://github.com/MzSergioMartin77/listadoSeries#readme"
+}
