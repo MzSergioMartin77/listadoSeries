@@ -9,6 +9,11 @@ const SerieSchema = Schema({
     estadoUser: String,
     temporadas: Number,
     tipo: String,
+    tomos:Number,
+    autor:String,
+    director:String,
+    estudio:String,
+    plataforma:String,
     genero: [String]
 });
 
