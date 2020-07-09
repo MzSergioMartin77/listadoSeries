@@ -63,7 +63,7 @@ const controller = {
         });
     },
 
-    getSerie: function(req, res){
+    getID: function(req, res){
         const serieId = req.params.id;
 
         if(serieId == null){
@@ -87,6 +87,84 @@ const controller = {
                 serie
             });
         });
+    },
+
+    getTipo: function(req, res){
+        const tipoparam = req.params.tipo;
+
+        if(tipoparam == null){
+            return res.status(404).send({
+                message: "No existe ese tipo"
+            });
+        }
+
+        Serie.find({tipo:tipoparam}, (err, serie) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al mostrar los datos"
+                });
+            }
+            if(!serie){
+                return res.status(404).send({
+                    message: "No existe ningúna serie de este tipo"
+                });
+            }
+            return res.status(200).send({
+                serie
+            });
+        }).sort("titulo");
+    },
+
+    getTitulo: function(req, res){
+        const tituloparam = req.params.titulo;
+
+        if(tituloparam == null){
+            return res.status(404).send({
+                message: "No existe ningúna obra con ese título"
+            });
+        }
+
+        Serie.find({titulo:tituloparam}, (err, serie) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al mostrar los datos"
+                });
+            }
+            if(!serie){
+                return res.status(404).send({
+                    message: "No existe ningúna serie con este título"
+                });
+            }
+            return res.status(200).send({
+                serie
+            });
+        });
+    },
+
+    getGenero: function(req, res){
+        const generoparam = req.params.genero;
+
+        if(generoparam == null){
+            return res.status(404).send({
+                message: "No existe ningúna obra con este género"
+            });
+        }
+
+        Serie.find({genero:generoparam}, (err, serie) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al mostrar los datos"
+                });
+            }
+            if(!serie){
+                return res.status(404).send({
+                    message: "No existe ningúna serie con este género"
+                });
+            }
+            return res.status(200).send({
+                serie
+            });
+        }).sort("titulo");
     }
 
 };
