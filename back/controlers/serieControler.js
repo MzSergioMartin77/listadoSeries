@@ -10,24 +10,6 @@ const controller = {
         });
     },
 
-    add: function(req, res){
-        res.status(200).send({
-            message: "pagina add"
-        });
-    },
-
-    obra: function(req, res){
-        res.status(200).send({
-            message: "pagina de una obra"
-        });
-    },
-
-    update: function(req, res){
-        res.status(200).send({
-            message: "pagina update"
-        });
-    },
-
     saveSerie: function(req, res){
         const serie = new Serie();
 
@@ -66,12 +48,6 @@ const controller = {
     getID: function(req, res){
         const serieId = req.params.id;
 
-        if(serieId == null){
-            return res.status(404).send({
-                message: "No existe ningúna serie con es id"
-            });
-        }
-
         Serie.findById(serieId, (err, serie) => {
             if(err){
                 return res.status(500).send({
@@ -91,12 +67,6 @@ const controller = {
 
     getTipo: function(req, res){
         const tipoparam = req.params.tipo;
-
-        if(tipoparam == null){
-            return res.status(404).send({
-                message: "No existe ese tipo"
-            });
-        }
 
         Serie.find({tipo:tipoparam}, (err, serie) => {
             if(err){
@@ -118,19 +88,13 @@ const controller = {
     getTitulo: function(req, res){
         const tituloparam = req.params.titulo;
 
-        if(tituloparam == null){
-            return res.status(404).send({
-                message: "No existe ningúna obra con ese título"
-            });
-        }
-
         Serie.find({titulo:tituloparam}, (err, serie) => {
             if(err){
                 return res.status(500).send({
                     message: "Error al mostrar los datos"
                 });
             }
-            if(!serie){
+            if(serie == ""){
                 return res.status(404).send({
                     message: "No existe ningúna serie con este título"
                 });
@@ -143,12 +107,6 @@ const controller = {
 
     getGenero: function(req, res){
         const generoparam = req.params.genero;
-
-        if(generoparam == null){
-            return res.status(404).send({
-                message: "No existe ningúna obra con este género"
-            });
-        }
 
         Serie.find({genero:generoparam}, (err, serie) => {
             if(err){
@@ -165,8 +123,67 @@ const controller = {
                 serie
             });
         }).sort("titulo");
-    }
+    },
+    
+    getSeries: function(req, res){
+        
+        Serie.find({}).sort("titulo").exec((err, serie) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al mostrar los datos"
+                });
+            }
+            if(!serie){
+                return res.status(404).send({
+                    message: "No existe ningúna serie con este género"
+                });
+            }
+            return res.status(200).send({
+                serie
+            });
+        });
+    },
 
+    updateSerie: function(req, res){
+        const serieId = req.params.id;
+        const update = req.body;
+
+        Serie.findByIdAndUpdate(serieId, update, {new:true}, (err, serieUpdated) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al mostrar los datos"
+                });
+            }
+            if(!serieUpdated){
+                return res.status(404).send({
+                    message: "No existe ningúna serie con este id"
+                });
+            }
+            return res.status(200).send({
+                serie : serieUpdated
+            });
+        })
+    },
+
+    deleteSerie: function(req, res){
+        const serieId = req.params.id;
+
+        Serie.findByIdAndRemove(serieId, (err, serieDeleted) => {
+            if(err){
+                return res.status(500).send({
+                    message: "Error al borrar la serie"
+                });
+            }
+            if(!serieDeleted){
+                return res.status(404).send({
+                    message: "No se pude eliminar esa serie"
+                });
+            }
+            return res.status(200).send({
+                serie : serieDeleted
+            });
+        })
+    },
 };
 
 module.exports = controller;
