@@ -7,6 +7,7 @@ import { AddSerieComponent } from './add-serie/add-serie.component';
 import { UpdateSerieComponent } from './update-serie/update-serie.component';
 import { ListSeriesComponent } from './list-series/list-series.component';
 import { InfoSerieComponent } from './info-serie/info-serie.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { InfoSerieComponent } from './info-serie/info-serie.component';
     AddSerieComponent,
     UpdateSerieComponent,
     ListSeriesComponent,
-    InfoSerieComponent
+    InfoSerieComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
