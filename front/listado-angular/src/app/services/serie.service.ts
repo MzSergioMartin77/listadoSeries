@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Serie } from '../models/serie';
-import { global } from './global';
+import { Global } from './global';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SerieService {
 
-  public url:String;
+  public url: String;
 
-  constructor(private _http:HttpClient) {
-    this.url = global.url;
+  constructor(private _http: HttpClient) {
+    this.url = Global.url;
   }
 
   testService(){

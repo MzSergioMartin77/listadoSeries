@@ -9,8 +9,8 @@ import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   {path: '', component: ListSeriesComponent},
-  {path: 'add-serie', component: AddSerieComponent},
-  {path: 'update-serie', component: UpdateSerieComponent},
+  {path: 'add', component: AddSerieComponent},
+  {path: 'update', component: UpdateSerieComponent},
   {path: 'serie', component:InfoSerieComponent},
   {path: '**', component:ErrorComponent}
 ];
