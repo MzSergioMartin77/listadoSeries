@@ -1,17 +1,17 @@
-<div class="contaier">
+<div class="container">
     <h2>{{title}}</h2>
 
     <form #serieForm='ngForm' (ngSubmit)='onSubmit(serieForm)'>
         <p>
-            <label for="titulo">Titulo </label>
+            <label for="titulo">Titulo: </label>
             <input value="{{serie.titulo}}" type="text" name="titulo" #titulo='ngModel' [(ngModel)]='serie.titulo'>
         </p>
         <p>
-            <label for="descripcion">Descripción </label>
+            <label for="descripcion">Descripción: </label>
             <textarea name="descripcion" #descripcion='ngModel' [(ngModel)]='serie.descripcion'></textarea>
         </p>
         <p>
-            <label for="tipo">Tipo </label>
+            <label for="tipo">Tipo: </label>
             <select  name="tipo" #tipo='ngModel' [(ngModel)]='serie.tipo'>
                 <option value="Anime">Anime</option>
                 <option value="Película">Película</option>
@@ -21,31 +21,31 @@
             </select>
         </p>
         <p *ngIf="serie.tipo === 'Serie' || serie.tipo === 'Anime'">
-            <label for="temporadas">Temporadas </label>
+            <label for="temporadas">Temporadas: </label>
             <input type="number" name="temporadas" min="1" #temporadas='ngModel' [(ngModel)]='serie.temporadas'>
         </p>
         <p *ngIf="serie.tipo === 'Manga'">
-            <label for="tomos">Tomos </label>
+            <label for="tomos">Tomos: </label>
             <input type="number" name="tomos" min="1" #tomos='ngModel' [(ngModel)]='serie.tomos'>
         </p>
         <p *ngIf="serie.tipo === 'Manga'">
-            <label for="autor">Autor </label>
+            <label for="autor">Autor: </label>
             <input type="text" name="autor" #autor='ngModel' [(ngModel)]='serie.autor'>
         </p>
         <p *ngIf="serie.tipo === 'Película'">
-            <label for="director">Director </label>
+            <label for="director">Director: </label>
             <input type="text" name="director" #director='ngModel' [(ngModel)]='serie.director'>
         </p>
         <p *ngIf="serie.tipo === 'Videojuego'">
-            <label for="estudio">Estudio </label>
+            <label for="estudio">Estudio: </label>
             <input type="text" name="estudio" #estudio='ngModel' [(ngModel)]='serie.estudio'>
         </p>
         <p *ngIf="serie.tipo === 'Videojuego'">
-            <label for="plataforma">Plataforma </label>
+            <label for="plataforma">Plataforma: </label>
             <input type="text" name="plataforma" #plataforma='ngModel' [(ngModel)]='serie.plataforma'>
         </p>
         <p *ngIf="serie.tipo != 'Película' && serie.tipo != 'Videojuego'">
-            <label for="estadoObra">Estado actual de la obra </label>
+            <label for="estadoObra">Estado actual de la obra: </label>
             <select  name="estadoObra" #estadoObra='ngModel' [(ngModel)]='serie.estadoObra'>
                 <option value="Finalizado">Finalizado</option>
                 <option value="En curso">En curso</option>
@@ -53,7 +53,7 @@
             </select>
         </p>
         <p>
-            <label for="estadoUser">Estado del usuario </label>
+            <label for="estadoUser">Estado del usuario: </label>
             <select  name="estadoUser" #estadoUser='ngModel' [(ngModel)]='serie.estadoUser'>
                 <option value="Leido">Leído</option>
                 <option value="Visto">Visto</option>
@@ -63,52 +63,16 @@
                 <option value="Pendiente">Pendiente</option>
             </select>
         </p>
-        <!-- <p>
-            <label for="genero">Genero </label>
-            <select  type="radio" name="genero" multiple #genero='ngModel' [(ngModel)]='serie.genero'>
-                <option  value="accion">Acción</option>
-                <option  value="aventura">Aventura</option>
-                <option  value="ciencia ficcion">Ciencia ficción</option>
-               <option value="fantasia">Fantasía</option>
-                <option value="comedia">Comedia</option>
-                <option value="drama">Drama</option>
-                <option value="mecha">Mecha</option>
-                <option value="psicologico">Psicológico</option>
-                <option value="ecchi">Ecchi</option>
-                <option value="sobrenatural">Sobrenatural</option>
-                <option value="romance">Romance</option>
-                <option value="suspense">Suspense</option>
-                <option value="belico">Bélico</option>
-                <option value="superheroes">Superhéroes</option>
-                <option value="fantasia oscura">Fantasía oscura</option>
-                <option value="comedia negra">Comedia negra</option>
-                <option value="gansteres">Gánsteres</option>
-                <option value="escolares">Escolares</option> 
-            </select>
-        </p>-->
-        
-        <fieldset name="genero" #genero='ngModel' [(ngModel)]='serie.genero'>
-            <legend>Elige los géneros de la obra</legend>
-            <input type="radio" value="accion"><label for="genero">Acción</label>
-            <input type="radio" value="aventura"><label for="genero">Aventura</label>
-            <input type="radio" value="ciencia ficcion"><label for="genero">Ciencia ficción</label>
-            <input type="radio" value="fantasia"><label for="genero">Fantasía</label><br>
-            <input type="radio" value="comedia"><label for="genero">Comedia</label>
-            <input type="radio" value="drama"><label for="genero">Drama</label>
-            <input type="radio" value="mecha"><label for="genero">Mecha</label>
-            <input type="radio" value="psicologico"><label for="genero">Psicológico</label><br>
-            <input type="radio" value="ecchi"><label for="genero">Ecchi</label>
-            <input type="radio" value="sobrenatural"><label for="genero">Sobrenatural</label>
-            <input type="radio" value="romance"><label for="genero">Romance</label>
-            <input type="radio" value="suspense"><label for="genero">Suspense</label><br>
-            <input type="radio" value="belico"><label for="genero">Bélico</label>
-            <input type="radio" value="superheroes"><label for="genero">Superhéroes</label>
-            <input type="radio" value="fantasia oscura"><label for="genero">Fantasía oscura</label>
-            <input type="radio" value="comedia negra"><label for="genero">Comedia negra</label><br>
-            <input type="radio" value="gansteres"><label for="genero">Gánsteres</label>
-            <input type="radio" value="escolares"><label for="genero">Escolares</label>
-        </fieldset>
-        <input type="submit" value="Enviar">
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Generos </mat-label>
+                <mat-select  multiple  name="genero" #genero='ngModel' [(ngModel)]='serie.genero'>
+                  <mat-option *ngFor="let genero of generosList" [value]="genero">{{genero}}</mat-option>
+                </mat-select>
+            </mat-form-field>                            
+        </p>
+
+        <input class="add" type="submit" value="Enviar">
     </form>
 </div>
 

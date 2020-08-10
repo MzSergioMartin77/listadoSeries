@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Serie } from '../models/serie';
 import { SerieService } from '../services/serie.service';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-add-serie',
@@ -12,11 +13,15 @@ export class AddSerieComponent implements OnInit {
 
     public title: String;
     public serie: Serie;
+    generos = new FormControl();
+    generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
+     'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
+     'Suspense', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares'];
 
   constructor( private _serieService: SerieService ) {
 
       this.title = 'Añadir una obra';
-      this.serie = new Serie('','','','','',0,'',0,'','','','',null);
+      this.serie = new Serie('','','','','',null,'',null,'','','','',null);
 
      /* public id: String,
       public titulo: String,

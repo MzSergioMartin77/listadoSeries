@@ -10,6 +10,8 @@ import { UpdateSerieComponent } from './update-serie/update-serie.component';
 import { ListSeriesComponent } from './list-series/list-series.component';
 import { InfoSerieComponent } from './info-serie/info-serie.component';
 import { ErrorComponent } from './error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DemoMaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ErrorComponent } from './error/error.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
