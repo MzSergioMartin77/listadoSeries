@@ -1,60 +1,79 @@
+<div class="message_success" *ngIf="status == 'true'">
+    <p>La obra ha sido guardada correctamente, puedes verlo <a href="#">aquí</a></p>
+</div>
+<div class="message_fail" *ngIf="status == 'false'">
+    La obra no se ha podido guardar correctamente
+</div>
 <div class="container">
     <h2>{{title}}</h2>
 
     <form #serieForm='ngForm' (ngSubmit)='onSubmit(serieForm)'>
         <p>
             <label for="titulo">Titulo: </label>
-            <input value="{{serie.titulo}}" type="text" name="titulo" #titulo='ngModel' [(ngModel)]='serie.titulo'>
+            <input value="{{serie.titulo}}" type="text" name="titulo" #titulo='ngModel' [(ngModel)]='serie.titulo' required/>
+            <span class="form_error" *ngIf="titulo.touched && titulo.invalid" >El titulo es obligatorio</span>
         </p>
         <p>
             <label for="descripcion">Descripción: </label>
-            <textarea name="descripcion" #descripcion='ngModel' [(ngModel)]='serie.descripcion'></textarea>
+            <textarea name="descripcion" #descripcion='ngModel' [(ngModel)]='serie.descripcion' required ></textarea>
+            <span class="form_error" *ngIf="descripcion.touched && descripcion.invalid" >La descripción es obligatorio</span>
         </p>
         <p>
             <label for="tipo">Tipo: </label>
-            <select  name="tipo" #tipo='ngModel' [(ngModel)]='serie.tipo'>
+            <select  name="tipo" #tipo='ngModel' [(ngModel)]='serie.tipo' required >
                 <option value="Anime">Anime</option>
                 <option value="Película">Película</option>
                 <option value="Serie">Serie</option>
                 <option value="Manga">Manga</option>
                 <option value="Videojuego">Videojuego</option>
             </select>
+            <span class="form_error" *ngIf="tipo.touched && tipo.invalid" >El tipo es obligatorio</span>
         </p>
         <p *ngIf="serie.tipo === 'Serie' || serie.tipo === 'Anime'">
             <label for="temporadas">Temporadas: </label>
-            <input type="number" name="temporadas" min="1" #temporadas='ngModel' [(ngModel)]='serie.temporadas'>
+            <input type="number" name="temporadas" min="1" #temporadas='ngModel' [(ngModel)]='serie.temporadas' required /><br>
+            <span class="form_error" *ngIf="temporadas.touched && temporadas.invalid" >El número de temporadas es obligatorio</span><br>
+            <span class="form_error" *ngIf="temporadas.touched && serie.temporadas <= 0 " > No puedes tener menos de una temporada</span>
         </p>
         <p *ngIf="serie.tipo === 'Manga'">
             <label for="tomos">Tomos: </label>
-            <input type="number" name="tomos" min="1" #tomos='ngModel' [(ngModel)]='serie.tomos'>
+            <input type="number" name="tomos" min="1" #tomos='ngModel' [(ngModel)]='serie.tomos' required/>
+            <span class="form_error" *ngIf="tomos.touched && tomos.invalid" >El número de tomos es obligatorio</span>
+            <span class="form_error" *ngIf=" tomos.touched && serie.tomos <= 0 " > No puedes tener menos de un tomo</span>
         </p>
         <p *ngIf="serie.tipo === 'Manga'">
             <label for="autor">Autor: </label>
-            <input type="text" name="autor" #autor='ngModel' [(ngModel)]='serie.autor'>
+            <input type="text" name="autor" #autor='ngModel' [(ngModel)]='serie.autor' required/>
+            <span class="form_error" *ngIf="autor.touched && autor.invalid" >El autor es obligatorio</span>
         </p>
         <p *ngIf="serie.tipo === 'Película'">
             <label for="director">Director: </label>
-            <input type="text" name="director" #director='ngModel' [(ngModel)]='serie.director'>
+            <input type="text" name="director" #director='ngModel' [(ngModel)]='serie.director' required/>
+            <span class="form_error" *ngIf="director.touched && director.invalid" >El director es obligatorio</span>
         </p>
         <p *ngIf="serie.tipo === 'Videojuego'">
             <label for="estudio">Estudio: </label>
-            <input type="text" name="estudio" #estudio='ngModel' [(ngModel)]='serie.estudio'>
+            <input type="text" name="estudio" #estudio='ngModel' [(ngModel)]='serie.estudio' required/>
+            <span class="form_error" *ngIf="estudio.touched && estudio.invalid" >El estudio es obligatorio</span>
         </p>
         <p *ngIf="serie.tipo === 'Videojuego'">
             <label for="plataforma">Plataforma: </label>
             <input type="text" name="plataforma" #plataforma='ngModel' [(ngModel)]='serie.plataforma'>
+            <span class="form_error" *ngIf="plataforma.touched && plataforma.invalid" >La plataforma es obligatoria</span>
         </p>
         <p *ngIf="serie.tipo != 'Película' && serie.tipo != 'Videojuego'">
             <label for="estadoObra">Estado actual de la obra: </label>
-            <select  name="estadoObra" #estadoObra='ngModel' [(ngModel)]='serie.estadoObra'>
+            <select  name="estadoObra" #estadoObra='ngModel' [(ngModel)]='serie.estadoObra' required>
                 <option value="Finalizado">Finalizado</option>
                 <option value="En curso">En curso</option>
                 <option value="Abandonado">Abandonado</option>
             </select>
+            <span class="form_error" *ngIf="estadoObra.touched && estadoObra.invalid" >
+                El estado de la obra es obligatorio</span>
         </p>
         <p>
             <label for="estadoUser">Estado del usuario: </label>
-            <select  name="estadoUser" #estadoUser='ngModel' [(ngModel)]='serie.estadoUser'>
+            <select  name="estadoUser" #estadoUser='ngModel' [(ngModel)]='serie.estadoUser' required>
                 <option value="Leido">Leído</option>
                 <option value="Visto">Visto</option>
                 <option value="Pasado">Pasado</option>
@@ -62,17 +81,22 @@
                 <option value="Abandonado">Abandonado</option>
                 <option value="Pendiente">Pendiente</option>
             </select>
+            <span class="form_error" *ngIf="estadoUser.touched && estadoUser.invalid" >
+                El estado del usuario con la obra es obligatorio</span>
         </p>
+        <p>Generos: </p>
         <p>
             <mat-form-field appearance="fill">
                 <mat-label>Generos </mat-label>
-                <mat-select  multiple  name="genero" #genero='ngModel' [(ngModel)]='serie.genero'>
+                <mat-select  multiple  name="genero" #genero='ngModel' [(ngModel)]='serie.genero' required>
                   <mat-option *ngFor="let genero of generosList" [value]="genero">{{genero}}</mat-option>
                 </mat-select>
-            </mat-form-field>                            
+            </mat-form-field>
+            <span class="form_error" *ngIf="genero.touched && genero.invalid" >
+                Es obligatorio elegir por lo menos un genero</span>                            
         </p>
 
-        <input class="add" type="submit" value="Enviar">
+        <input class="add" type="submit" value="Enviar" [disabled]="!serieForm.form.valid" />
     </form>
 </div>
 

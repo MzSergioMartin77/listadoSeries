@@ -13,6 +13,7 @@ export class AddSerieComponent implements OnInit {
 
     public title: String;
     public serie: Serie;
+    public status: String;
     generos = new FormControl();
     generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
      'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
@@ -21,21 +22,8 @@ export class AddSerieComponent implements OnInit {
   constructor( private _serieService: SerieService ) {
 
       this.title = 'Añadir una obra';
-      this.serie = new Serie('','','','','',null,'',null,'','','','',null);
+      this.serie = new Serie('','','','','',0,'',0,'','','','',null);
 
-     /* public id: String,
-      public titulo: String,
-      public descripcion: String,
-      public estadoObra: String,
-      public estadoUser: String,
-      public temporadas: Number,
-      public tipo: String,
-      public tomos:Number,
-      public autor:String,
-      public director:String,
-      public estudio:String,
-      public plataforma:String,
-      public genero: [String]*/
    }
 
   ngOnInit(): void {
@@ -43,6 +31,16 @@ export class AddSerieComponent implements OnInit {
 
   onSubmit(form){
     console.log(this.serie);
+    this._serieService.saveSerie(this.serie).subscribe(
+      response => {
+        this.status = 'true';
+        form.reset();
+      },
+      error => {
+        this.status = 'false';
+      }
+      
+    )
   }
 
 }
