@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Serie } from '../models/serie';
 import { Global } from './global';
-import { TagContentType } from '@angular/compiler';
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,13 @@ export class SerieService {
   }
 
   saveSerie(serie : Serie) :Observable<any>{
-    let params = JSON.stringify(serie);
+
+    let params = JSON.stringify(serie, (key, value) => {
+      if(value == '' && value == 0){
+        return undefined;
+      }
+      return value;
+    });
     console.log(params);
     let headers = new HttpHeaders().set('Content-Type','application/json');
 

@@ -12,6 +12,7 @@ import { InfoSerieComponent } from './info-serie/info-serie.component';
 import { ErrorComponent } from './error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DemoMaterialModule} from './material-module';
+import { TipoSeriePipe } from './tipo-serie.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {DemoMaterialModule} from './material-module';
     UpdateSerieComponent,
     ListSeriesComponent,
     InfoSerieComponent,
-    ErrorComponent
+    ErrorComponent,
+    TipoSeriePipe
   ],
   imports: [
     BrowserModule,

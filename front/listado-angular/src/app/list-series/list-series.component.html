@@ -1,1 +1,29 @@
-<p>list-series works!</p>
+<div class="container">
+    <h2>Listado de todas las obras</h2>
+    <div class="filter">
+        <h3>Filtros</h3>
+        <p>
+            <label>Filtro por tipo: </label>
+            <select  name="tipo"  [(ngModel)]='tipo'>
+                <option value="Anime">Anime</option>
+                <option value="Película">Película</option>
+                <option value="Serie">Serie</option>
+                <option value="Manga">Manga</option>
+                <option value="Videojuego">Videojuego</option>
+                <option value="All">Todo</option>
+            </select>
+        </p>
+    </div>
+    <ul *ngIf='!tipo || tipo === "All"'>
+        <li *ngFor="let serie of series">
+            <a href="#">{{serie.titulo}}</a>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let serie of series | tipoSerie:tipo ">
+            <a href="#">{{serie.titulo}}</a>
+        </li>
+    </ul>
+</div>
+
+
