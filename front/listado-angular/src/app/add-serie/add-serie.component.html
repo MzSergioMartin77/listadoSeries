@@ -1,10 +1,10 @@
 <div class="message_success" *ngIf="status == 'true'">
-    <p>La obra ha sido guardada correctamente, puedes verlo <a href="#">aquí</a></p>
+    <p>La obra ha sido guardada correctamente, puedes verlo <a [routerLink]='["/obra", save_serie._id]' >aquí</a></p>
 </div>
 <div class="message_fail" *ngIf="status == 'false'">
     La obra no se ha podido guardar correctamente
 </div>
-<div class="container">
+<div class="container" *ngIf="serie">
     <h2>{{title}}</h2>
 
     <form #serieForm='ngForm' (ngSubmit)='onSubmit(serieForm)'>
@@ -74,7 +74,7 @@
         <p>
             <label for="estadoUser">Estado del usuario: </label>
             <select  name="estadoUser" #estadoUser='ngModel' [(ngModel)]='serie.estadoUser' required>
-                <option value="Leido">Leído</option>
+                <option value="Leído">Leído</option>
                 <option value="Visto">Visto</option>
                 <option value="Pasado">Pasado</option>
                 <option value="Siguiendo">Siguiendo</option>

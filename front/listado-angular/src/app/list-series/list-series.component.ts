@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Serie } from '../models/serie';
 import { SerieService } from '../services/serie.service';
 import { Global } from '../services/global';
+import {FormControl} from '@angular/forms';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-list-series',
@@ -12,21 +15,20 @@ import { Global } from '../services/global';
 export class ListSeriesComponent implements OnInit {
 
   public series: Serie[];
-  public tipo: String;
+  public tipo: String = 'Todos';
+  public genero: String = 'Todos';
+  generos = new FormControl();
+  generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
+     'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
+     'Suspense', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares', 'Tragedia', 'RPG', 'Todos'];
+  tipos = new FormControl();
+  tiposList: string[] = ['Anime', 'Serie', 'Película', 'Manga', 'Videojuego', 'Todos'];
   constructor(private _serieService: SerieService) { 
   }
 
   ngOnInit(): void {
     this.getSeries();
-    console.log(this.tipo);
   }
-  /* transform(series: Serie[]) {
-        return series.filter(serie => function(tipo) {
-            if(serie.tipo == tipo){
-                series.push(serie);
-            }
-        });
-    }*/ 
 
   getSeries(){
     this._serieService.getSeries().subscribe(
@@ -39,7 +41,6 @@ export class ListSeriesComponent implements OnInit {
       error => {
         console.log(<any>error);
       }
-      
     )
   }
 

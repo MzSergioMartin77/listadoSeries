@@ -1,2 +1,25 @@
-<p>Información de una serie</p>
+<div class="container" *ngIf="serie">
+    <h2>{{serie.titulo}}</h2>
+    <p>{{serie.descripcion}}</p>
+    <p>Tipo: {{serie.tipo}}</p>
+    <p *ngIf="serie.tipo === 'Anime' || serie.tipo === 'Serie'">Temporadas: {{serie.temporadas}}</p>
+    <p *ngIf="serie.tipo === 'Manga'">Tomos: {{serie.tomos}}</p>
+    <p *ngIf="serie.tipo === 'Manga'">Autor: {{serie.autor}}</p>
+    <p *ngIf="serie.tipo === 'Película'">Director: {{serie.director}}</p>
+    <p *ngIf="serie.tipo === 'Videojuego'">Estudio: {{serie.estudio}}</p>
+    <p *ngIf="serie.tipo === 'Videojuego'">PLataforma: {{serie.plataforma}}</p>
+    <p *ngIf="serie.tipo != 'Película' && serie.tipo != 'Videojuego'">
+        Estado de la obra: {{serie.estadoObra}}</p>
+    <p>Estado del usuario: {{serie.estadoUser}}</p>
+    <p>Generos: </p>
+    <ul>
+        <li *ngFor="let genero of serie.genero">{{genero}}</li>
+    </ul>
+    <div class="button">
+        <a  [routerLink]="['/update', serie._id]" class="button-edit">Editar</a>
+        <a (click)="deleteSerie(serie._id)" class="button-delete">Eliminar</a>
+    </div>
+    
+</div>
+
   

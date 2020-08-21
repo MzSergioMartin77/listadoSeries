@@ -1,6 +1,6 @@
 export class Serie{
     constructor(
-        public id: String,
+        public _id: String,
         public titulo: String,
         public descripcion: String,
         public estadoObra: String,

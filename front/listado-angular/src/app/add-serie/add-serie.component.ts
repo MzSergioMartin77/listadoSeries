@@ -14,10 +14,11 @@ export class AddSerieComponent implements OnInit {
     public title: String;
     public serie: Serie;
     public status: String;
+    public save_serie;
     generos = new FormControl();
     generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
      'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
-     'Suspense', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares', 'Tragedia', 'RPG'];
+     'Suspense', 'Misterio', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares', 'Tragedia', 'RPG'];
 
   constructor( private _serieService: SerieService ) {
 
@@ -33,6 +34,7 @@ export class AddSerieComponent implements OnInit {
     console.log(this.serie);
     this._serieService.saveSerie(this.serie).subscribe(
       response => {
+        this.save_serie = response.serie;
         this.status = 'true';
         form.reset();
       },

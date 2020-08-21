@@ -39,4 +39,23 @@ export class SerieService {
     
     return this._http.get(this.url+'obras', {headers:headers});
   }
+
+  getSerie(id) :Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+
+    return this._http.get(this.url+'obra/'+id, {headers:headers});
+  }
+
+  deleteSerie(id) :Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this._http.delete(this.url+'obra/'+id, {headers:headers});
+  }
+
+  updateSerie(serie: Serie) :Observable<any>{
+    let params = JSON.stringify(serie)
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    
+    return this._http.put(this.url+'obra/'+serie._id, params, {headers:headers});
+  }
 }

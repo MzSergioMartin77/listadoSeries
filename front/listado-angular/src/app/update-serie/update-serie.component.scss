@@ -1,0 +1,54 @@
+.container {
+    padding-top: 40px;
+    text-align: center;
+}
+.container h2 {
+    padding-bottom: 15px;
+}
+
+.container p {
+    padding-bottom: 5px;
+}
+
+.container .add {
+    padding: 10px 45px;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+
+.form_error {
+    margin: 20px;
+    color: red;
+}
+
+form input[disabled]{
+    cursor: not-allowed;
+}
+
+.message_success {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px 20px;
+  max-width: 300px;
+  min-height: 100px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+}
+
+.message_fail {
+    color: red;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 20px;
+    max-width: 300px;
+    min-height: 100px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.3);
+    font-size: 20px;
+  }
