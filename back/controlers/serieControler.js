@@ -1,6 +1,8 @@
 
 const Serie = require('../models/serie');
-
+const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
+mongoose.set('useUnifiedTopology', true);
 
 const controller = {
 
@@ -148,7 +150,7 @@ const controller = {
         const serieId = req.params.id;
         const update = req.body;
 
-        Serie.findByIdAndUpdate(serieId, update, {new:true}, (err, serieUpdated) => {
+        Serie.findOneAndUpdate({_id:serieId}, update, {new:true}, (err, serieUpdated) => {
             if(err){
                 return res.status(500).send({
                     message: "Error al mostrar los datos"
@@ -168,7 +170,7 @@ const controller = {
     deleteSerie: function(req, res){
         const serieId = req.params.id;
 
-        Serie.findByIdAndRemove(serieId, (err, serieDeleted) => {
+        Serie.findOneAndDelete({_id:serieId}, (err, serieDeleted) => {
             if(err){
                 return res.status(500).send({
                     message: "Error al borrar la serie"
@@ -183,7 +185,8 @@ const controller = {
                 serie : serieDeleted
             });
         })
-    },
+    }
+
 };
 
 module.exports = controller;
