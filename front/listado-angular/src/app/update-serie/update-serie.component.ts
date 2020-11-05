@@ -20,7 +20,8 @@ export class UpdateSerieComponent implements OnInit {
     generos = new FormControl();
     generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
      'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
-     'Suspense', 'Misterio', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares', 'Tragedia', 'RPG'];
+     'Suspense', 'Misterio', 'Bélico', 'Superhéroes', 'Gánsteres', 'Animación', 'Escolares', 'Tragedia',
+    'RPG', 'Estrategia'];
 
   constructor( 
       private _serieService: SerieService,

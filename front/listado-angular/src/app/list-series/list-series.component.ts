@@ -20,7 +20,8 @@ export class ListSeriesComponent implements OnInit {
   generos = new FormControl();
   generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
      'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
-     'Suspense', 'Bélico', 'Superhéroes', 'Gánsteres', 'Escolares', 'Tragedia', 'RPG', 'Todos'];
+     'Suspense', 'Bélico', 'Superhéroes', 'Gánsteres', 'Animación','Escolares', 'Tragedia', 'RPG', 
+     'Estrategia','Todos'];
   tipos = new FormControl();
   tiposList: string[] = ['Anime', 'Serie', 'Película', 'Manga', 'Videojuego', 'Todos'];
   constructor(private _serieService: SerieService) { 

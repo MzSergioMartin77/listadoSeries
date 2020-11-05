@@ -58,4 +58,5 @@ export class SerieService {
     
     return this._http.put(this.url+'obra/'+serie._id, params, {headers:headers});
   }
+
 }
