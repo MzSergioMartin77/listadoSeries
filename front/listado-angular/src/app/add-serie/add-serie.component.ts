@@ -17,7 +17,7 @@ export class AddSerieComponent implements OnInit {
     public save_serie;
     generos = new FormControl();
     generosList: string[] = ['Acción', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Comedia negra',
-     'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Ecchi', 'Sobrenatural', 'Romance',
+     'Fantasía', 'Fantasía oscura', 'Drama', 'Mecha', 'Psicológico', 'Sobrenatural', 'Romance',
      'Suspense', 'Misterio', 'Bélico', 'Superhéroes', 'Gánsteres', 'Animación','Escolares', 'Tragedia', 
      'RPG', 'Estrategia'];
 
