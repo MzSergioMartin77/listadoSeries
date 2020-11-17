@@ -15,7 +15,7 @@ const config = {
         cors: {
             server: [
                 {
-                    origin: "localhost:4200", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+                    origin: "localhost:4200", //servidor que deseas que consuma
                     credentials: true
                 }
             ]
